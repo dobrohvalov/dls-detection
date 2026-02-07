@@ -1,0 +1,31 @@
+services:
+  dls-back:
+    build: .
+    command: uvicorn main:app --proxy-headers --host 0.0.0.0 --port 8080
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8080"
+    volumes:
+      - dls:/data/db
+    networks:
+      - dls-network
+
+  dls-nuxt:
+    build: ./client
+    ports:
+      - "32768:3000"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=https://test.f-lab.ru/api
+    networks:
+      - dls-network
+    depends_on:
+      - dls-back
+
+volumes:
+  dls:
+
+networks:
+  dls-network:
+    driver: bridge

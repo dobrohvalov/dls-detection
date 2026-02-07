@@ -1,0 +1,13 @@
+batch: 10
+box: 7.5
+cls: 0.5
+dfl: 1.5
+epochs: 50
+imgsz: 1024
+lr0: 0.01
+lrf: 0.01
+model: yolov8n.pt
+momentum: 0.937
+warmup_epochs: 3.0
+warmup_momentum: 0.8
+weight_decay: 0.0005
